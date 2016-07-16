@@ -1,0 +1,16 @@
+{
+  "name": "garbage-reminder",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node Server.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "moment": "latest",
+    "twig": "^0.9.5",
+    "reminder": "latest",
+    "pushover-notifications": "latest",
+    "moment-ferie-fr": "latest",
+    "nodejs-config": "latest"
+  }
+}
