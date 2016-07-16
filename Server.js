@@ -1,8 +1,9 @@
+
+
 var express = require("express");
 var Twig = require("twig");
 var Reminder = require('reminder');
 var push = require('pushover-notifications');
-var config = require('nodejs-config')(__dirname);
 
 
 var app = express();
@@ -12,10 +13,12 @@ var remind = new Reminder();
 var planning = require('./planning');
 var whichGarbage = planning.whichGarbage();
 
+console.log(process.env);
+console.log(process.env['PUSHOVER_USER']);
 
 var push = new push({
-    user: config.get('pushover').user,
-    token: config.get('pushover').token
+    user: process.env['PUSHOVER_USER'],
+    token: process.env['PUSHOVER_TOKEN']
 });
 
 router.use(function (req, res, next) {
