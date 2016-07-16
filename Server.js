@@ -13,8 +13,6 @@ var remind = new Reminder();
 var planning = require('./planning');
 var whichGarbage = planning.whichGarbage();
 
-console.log(process.env);
-console.log(process.env['PUSHOVER_USER']);
 
 var push = new push({
     user: process.env['PUSHOVER_USER'],

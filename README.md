@@ -17,8 +17,9 @@ L'application Garbage Reminder sert de rappel à la sortie des bacs d'ordures :
 - npm install
 - Créer un compte sur http://pushover.net
 - Créer une application sur Pushover.net
-- Renommer le fichier example.pushover.json en pushover.json et renseigner les valeurs "user" et "token" par les données fournies par Pushover.net
-
+- Définir les variables d'environnement : 
+  process.env['PUSHOVER_USER'] = 'YOUR_USER_KEY';
+  process.env['PUSHOVER_TOKEN'] =  'YOUR_APP_TOKEN_KEY';
 
 ## @TODO
 - Affichage pour mobile
