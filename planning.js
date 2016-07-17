@@ -1,7 +1,7 @@
 var moment = require('moment');
 var momentFerie = require('moment-ferie-fr');
 
-var daysOrduresMenageres = ['Thursday', 'Saturday'];
+var daysOrduresMenageres = ['Monday', 'Thursday', 'Saturday'];
 var daysPlastique = ['Thursday'];
 var daysCarton = ['Thursday'];
 
