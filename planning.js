@@ -1,7 +1,7 @@
 var moment = require('moment');
 var momentFerie = require('moment-ferie-fr');
 
-var daysOrduresMenageres = ['Monday', 'Thursday', 'Saturday'];
+var daysOrduresMenageres = ['Thursday', 'Saturday'];
 var daysPlastique = ['Thursday'];
 var daysCarton = ['Thursday'];
 
@@ -23,7 +23,7 @@ module.exports.whichGarbage = function () {
         garbage = {
             name: 'Ordures Ménagères',
             color: 'Gris',
-            image: '/images/bac_gris.jpg'
+            image: '/images/bac_gris.png'
         }
     }
     else if (( daysPlastique.indexOf(tomorrowDay) != -1 || (now.isFerie() && daysPlastique.indexOf(currentDay) != -1 ) ) && isOdd(week)) {

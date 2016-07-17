@@ -22,7 +22,6 @@ L'application Garbage Reminder sert de rappel à la sortie des bacs d'ordures :
   process.env['PUSHOVER_TOKEN'] =  'YOUR_APP_TOKEN_KEY';
 
 ## @TODO
-- Affichage pour mobile
 - Factoriser le code (et améliorer, ceci est ma première app nodejs)
 - Rendre paramétrable les jours de sortie car différent selon la rue / la ville
 - Gérer le cas où le Samedi est ferié : reporter l'alerte au Dimanche soir pour sortir le Lundi

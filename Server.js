@@ -8,6 +8,8 @@ var router = express.Router();
 var remind = new Reminder();
 var whichGarbage = planning.whichGarbage();
 
+console.log(whichGarbage.name);
+
 var pusher = new push({
     user: process.env['PUSHOVER_USER'],
     token: process.env['PUSHOVER_TOKEN']
