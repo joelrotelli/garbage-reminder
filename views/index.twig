@@ -47,10 +47,12 @@
                     {% if next is not empty %}
                         <p class="lead">
                             <br />
-                            <span class="label label-warning">
-                                Pensez au bac {{ next.garbage.name }}
-                                {{ next.garbage.color }}<br />pour {{ next.day }} !
-                            </span>
+                            <div class="alert alert-warning" role="alert">
+                                <p class="lead">
+                                    Pensez au bac <b>{{ next.garbage.name }}</b>
+                                    {{ next.garbage.color }} pour <b>{{ next.day }}</b> !
+                                </p>
+                            </div>
                         </p>
                     {% endif %}
         </div>
