@@ -11,6 +11,9 @@ var currentDay = now.format('dddd');
 var tomorrow = moment().add(1, 'days');
 var tomorrowDay = tomorrow.format('dddd');
 
+var yesterday = moment().subtract(1, 'days');
+var previousDay = yesterday.format('dddd');
+
 var week = now.format('ww');
 
 
@@ -38,6 +41,33 @@ module.exports.whichGarbage = function () {
             name: 'Cartons',
             color: 'Bleu',
             image: '/images/bac_bleu.png'
+        }
+    }
+    //Si Aujourd'hui est dimanche et qu'hier était ferié, alerter, pour Lundi
+    else if (currentDay == 'Sunday' && yesterday.isFerie()) {
+
+        if (daysOrduresMenageres.indexOf(previousDay) != -1) {
+            garbage = {
+                name: 'Ordures Ménagères',
+                color: 'Gris',
+                image: '/images/bac_gris.png'
+            }
+        }
+
+        if (daysPlastique.indexOf(previousDay) != -1) {
+            garbage = {
+                name: 'Plastiques',
+                color: 'Jaune',
+                image: '/images/bac_jaune.png'
+            }
+        }
+
+        if (daysCarton.indexOf(previousDay) != -1) {
+            garbage = {
+                name: 'Cartons',
+                color: 'Bleu',
+                image: '/images/bac_bleu.png'
+            }
         }
     }
     else {
