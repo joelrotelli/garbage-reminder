@@ -1,18 +1,25 @@
+var language = 'fr';
+
 var moment = require('moment');
+
 var momentFerie = require('moment-ferie-fr');
 
-var daysOrduresMenageres = ['Thursday', 'Saturday'];
-var daysPlastique = ['Thursday'];
-var daysCarton = ['Thursday'];
+var days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
+var daysOrduresMenageres = ['Jeudi', 'Samedi'];
+var daysPlastique = ['Jeudi'];
+var daysCarton = ['Jeudi'];
 
 var now = moment();
-var currentDay = now.format('dddd');
+var currentDay = now.locale(language).format('dddd');
+
+console.log(currentDay);
 
 var tomorrow = moment().add(1, 'days');
-var tomorrowDay = tomorrow.format('dddd');
+var tomorrowDay = tomorrow.locale(language).format('dddd');
 
 var yesterday = moment().subtract(1, 'days');
-var previousDay = yesterday.format('dddd');
+var previousDay = yesterday.locale(language).format('dddd');
 
 var week = now.format('ww');
 
@@ -73,13 +80,72 @@ module.exports.whichGarbage = function () {
     else {
         garbage = {
             name: 'Aucun bac à sortir ! Dormez tranquille !',
-            image: '/images/zen.png'
+            image: '/images/zen.png',
+            color: ''
         }
     }
 
     return garbage;
-}
+};
 
+
+//Parcourir les jours de la semaine et retourner le prochain bac à sortir
+module.exports.nextGarbage = function () {
+
+    var garbage = {};
+    var nextDay = '';
+
+    days.some(function (day) {
+        if (daysOrduresMenageres.indexOf(day) != -1) {
+            garbage = {
+                name: 'Ordures Ménagères',
+                color: 'Gris',
+                image: '/images/bac_gris.png'
+            };
+
+            nextDay = day;
+
+            return true;
+
+        }
+
+        if (daysPlastique.indexOf(day) != -1) {
+            garbage = {
+                name: 'Ordures Ménagères',
+                color: 'Gris',
+                image: '/images/bac_gris.png'
+            };
+
+
+            nextDay = day;
+            return true;
+        }
+
+        if (daysCarton.indexOf(day) != -1) {
+            garbage = {
+                name: 'Ordures Ménagères',
+                color: 'Gris',
+                image: '/images/bac_gris.png'
+            };
+
+
+            nextDay = day;
+            return true;
+        }
+    });
+
+
+    if (Object.keys(garbage).length > 0) {
+        var next = {
+            day: nextDay,
+            garbage: garbage
+        };
+
+        return next;
+    }
+
+
+};
 
 function isEven(n) {
     return n == parseFloat(n) && !(n % 2);

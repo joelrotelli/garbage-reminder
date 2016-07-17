@@ -1,4 +1,5 @@
 var express = require("express");
+var util = require('util');
 var Reminder = require('reminder');
 var push = require('pushover-notifications');
 var planning = require('./planning');
@@ -7,8 +8,10 @@ var app = express();
 var router = express.Router();
 var remind = new Reminder();
 var whichGarbage = planning.whichGarbage();
+var nextGarbage = planning.nextGarbage();
 
-console.log(whichGarbage.name);
+console.log('A sortir demain : ' + whichGarbage.name);
+console.log('Next : ' + nextGarbage.day);
 
 var pusher = new push({
     user: process.env['PUSHOVER_USER'],
@@ -24,7 +27,8 @@ router.get("/", function (req, res) {
     res.render('index.twig', {
         name: whichGarbage.name,
         image: whichGarbage.image,
-        color: whichGarbage.color
+        color: whichGarbage.color,
+        next: nextGarbage
     });
 });
 
