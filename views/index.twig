@@ -41,15 +41,15 @@
                         {{ name }}
                     </p>
 
-                    <image src="{{ image }}" alt=""/>
+                    <image src="{{ image }}" alt="" width="200"/>
 
 
                     {% if next is not empty %}
                         <p class="lead">
                             <br />
                             <span class="label label-warning">
-                                Il faudra penser à sortir le bac {{ next.garbage.name }}
-                                {{ next.garbage.color }} {{ next.day }}
+                                Pensez au bac {{ next.garbage.name }}
+                                {{ next.garbage.color }} {{ next.day }} !
                             </span>
                         </p>
                     {% endif %}
