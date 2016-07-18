@@ -1,19 +1,15 @@
 var language = 'fr';
 
 var moment = require('moment');
+require('moment-ferie-fr');
+require('moment-range');
 
-var momentFerie = require('moment-ferie-fr');
-
-var days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-
-var daysOrduresMenageres = ['Mercredi', 'Samedi'];
-var daysPlastique = ['Jeudi'];
-var daysCarton = ['Jeudi'];
+var daysOrduresMenageres = ['mercredi', 'samedi'];
+var daysPlastique = ['jeudi'];
+var daysCarton = ['jeudi'];
 
 var now = moment();
 var currentDay = now.locale(language).format('dddd');
-
-console.log(currentDay);
 
 var tomorrow = moment().add(1, 'days');
 var tomorrowDay = tomorrow.locale(language).format('dddd');
@@ -95,43 +91,51 @@ module.exports.nextGarbage = function () {
     var garbage = {};
     var nextDay = '';
 
-    days.some(function (day) {
-        if (daysOrduresMenageres.indexOf(day) != -1) {
-            garbage = {
-                name: 'Ordures Ménagères',
-                color: 'Gris',
-                image: '/images/bac_gris.png'
-            };
+    //Créer une semaine entre la date du jour et + 7 jours
+    var start = new Date();
+    var date2 = new Date();
+    var end = new Date(date2.setDate(date2.getDate() + 7));
+    var week = moment.range(start, end);
+    var day;
 
-            nextDay = day;
+    //Itérer sur les jours à partir du jour courant pour trouver le prochain jour de collecte
+    //@TODO A factoriser et améliorer
+    week.by('days', function (time) {
+        day = moment(time).locale(language).format('dddd');
 
-            return true;
+        //Continuer de boucler seulement si on a pas encore trouvé de nextDay
+        if (nextDay == '') {
+            if (daysOrduresMenageres.indexOf(day) != -1) {
+                garbage = {
+                    name: 'Ordures Ménagères',
+                    color: 'Gris',
+                    image: '/images/bac_gris.png'
+                };
 
+                nextDay = day;
+
+            }
+            else if (daysPlastique.indexOf(day) != -1) {
+                garbage = {
+                    name: 'Ordures Ménagères',
+                    color: 'Gris',
+                    image: '/images/bac_gris.png'
+                };
+
+
+                nextDay = day;
+            }
+            else if (daysCarton.indexOf(day) != -1) {
+                garbage = {
+                    name: 'Ordures Ménagères',
+                    color: 'Gris',
+                    image: '/images/bac_gris.png'
+                };
+
+                nextDay = day;
+            }
         }
 
-        if (daysPlastique.indexOf(day) != -1) {
-            garbage = {
-                name: 'Ordures Ménagères',
-                color: 'Gris',
-                image: '/images/bac_gris.png'
-            };
-
-
-            nextDay = day;
-            return true;
-        }
-
-        if (daysCarton.indexOf(day) != -1) {
-            garbage = {
-                name: 'Ordures Ménagères',
-                color: 'Gris',
-                image: '/images/bac_gris.png'
-            };
-
-
-            nextDay = day;
-            return true;
-        }
     });
 
 
@@ -141,8 +145,16 @@ module.exports.nextGarbage = function () {
             garbage: garbage
         };
 
-        return next;
     }
+    else {
+        var next = {
+            day: 'Aucun jour trouvé',
+            garbage: {}
+        };
+    }
+
+
+    return next;
 
 
 };

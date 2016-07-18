@@ -11,6 +11,7 @@ L'application Garbage Reminder sert de rappel à la sortie des bacs d'ordures :
 - Twig
 - Moment.js
 - https://github.com/DepthFrance/moment-ferie-fr : gestion des jours feriés
+- https://github.com/gf3/moment-range : gestion des plage de date (pour l'itération)
 
 ## Installation
 - Cloner le dépot
