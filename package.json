@@ -10,6 +10,7 @@
     "twig": "^0.9.5",
     "reminder": "latest",
     "pushover-notifications": "latest",
-    "moment-ferie-fr": "latest"
+    "moment-ferie-fr": "latest",
+    "moment-range": "latest"
   }
 }
