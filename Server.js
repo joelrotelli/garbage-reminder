@@ -1,9 +1,12 @@
 var express = require("express");
 var util = require('util');
+var common = require('./common.js');
+
 var Reminder = require('reminder');
 var push = require('pushover-notifications');
 var planning = require('./planning');
 
+var config = common.config();
 var app = express();
 var router = express.Router();
 var remind = new Reminder();
@@ -14,9 +17,11 @@ console.log('A sortir demain : ' + whichGarbage.name);
 console.log('Next : ' + nextGarbage.day);
 
 var pusher = new push({
-    user: process.env['PUSHOVER_USER'],
-    token: process.env['PUSHOVER_TOKEN']
+    user: config.pushover.user,
+    token: config.pushover.token
 });
+
+console.log(config);
 
 router.use(function (req, res, next) {
     //console.log("/" + req.method);
