@@ -42,17 +42,6 @@
                     </p>
 
                     <image src="{{ image }}" alt="" width="200"/>
-
-
-                    {% if next is not empty %}
-                        <p class="lead">
-                            <div class="alert alert-warning" role="alert">
-                                <p class="lead">
-                                    Pensez au bac <b>{{ next.garbage.name }} <small>({{ next.garbage.color }})</small></b> pour <b>{{ next.day }}</b> !
-                                </p>
-                            </div>
-                        </p>
-                    {% endif %}
         </div>
     </div>
     <!-- /.row -->
