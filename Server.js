@@ -35,7 +35,7 @@ router.get("/", function (req, res) {
 
 
 
-remind.at('22:24', function () {
+remind.at('20:00', function () {
 
     //Push alert only if we have a color)
     if (whichGarbage.color != '') {
